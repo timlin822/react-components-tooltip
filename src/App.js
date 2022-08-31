@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import {useState} from 'react';
+
+import Tooltip from 'components/tooltip/Tooltip';
+
+import image from 'images/girl.jpg';
+
 import './App.css';
 
 function App() {
+  const [tooltipIsShow,setTooltipIsShow]=useState(false);
+
+  const mouseEnterHandler=()=>{
+		setTooltipIsShow(true);
+	};
+  const mouseLeaveHandler=()=>{
+      setTooltipIsShow(false);
+	};
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="section-padding bg-height">
+      <div className="container container-padding">
+        <div className="image-box">
+          <img className="image" src={image} onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler} alt="image" />
+          <Tooltip tooltipIsShow={tooltipIsShow} text="I'm Mary Chen" />
+        </div>
+      </div>
+    </section>
   );
 }
 
